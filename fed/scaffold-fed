@@ -1,0 +1,146 @@
+#!/bin/bash
+
+echo 'Starting scaffold..'
+
+npm init -y
+
+
+# Banner
+banner(){
+  echo '---------------------'
+  echo $1
+  echo '---------------------'
+}
+
+
+# Install default packages
+defaultPackages(){
+  packages=(
+    # Webpack
+    'webpack' 
+    'webpack-cli' 
+    'webpack-dev-server' 
+    'webpack-merge'
+    
+    # Webpack plugins
+    'clean-webpack-plugin' 
+    'copy-webpack-plugin' 
+    'html-webpack-plugin'
+    'mini-css-extract-plugin'
+    
+    # Babel
+    '@babel/core'
+    '@babel/preset-env'
+    'babel-loader'
+    
+    # Styling
+    'css-loader'
+    'file-loader'
+    'style-loader'
+    'node-sass sass-loader'
+
+    # Linting
+    'eslint'
+    'eslint-config-prettier'
+    'eslint-plugin-prettier'
+  )
+
+  banner 'Installing default packages (development)'
+
+  for pkg in ${packages[@]}
+    do
+      #npm i -D -p $pkg
+      echo $pkg
+    done
+
+  # Formatting
+  #npm i -D -E -p prettier
+}
+#defaultPackages
+
+
+# Non-default packages (dev)
+# Echo package name and receive a input response (y/any other key)
+nonDefaultDev(){
+  packages=(
+    '@babel/plugin-transform-react-jsx'
+    '@babel/plugin-proposal-class-properties' 
+    '@babel/preset-typescript' 
+    'strip-loader' 
+    'ts-loader' 
+    'node-prune'
+  )
+
+  banner 'Non-default packages (development)'
+
+  for pkg in ${packages[@]}
+    do
+      # Read user response
+      read -p "Install ${pkg}(y/n): " resp
+
+      if [[ -n $resp && ${resp,,} == 'y' ]]
+        then
+          echo $resp
+          # Install package
+          # npm i -D -p $pkg
+      fi
+    done
+}
+#nonDefaultDev
+
+
+# Non-default packages (prod)
+nonDefaultProd(){
+  packages=(
+    'preact' 
+    'preact-router' 
+    'react' 
+    'react-router-dom' 
+  )
+
+  banner 'Non-default packages (production)'
+
+  for pkg in ${packages[@]}
+    do
+      # Read user response
+      read -p "Install ${pkg}(y/n): " resp
+
+      if [[ -n $resp && ${resp,,} == 'y' ]]
+        then
+          echo $resp
+          # Install package
+          # npm i -D -p $pkg
+      fi
+    done
+}
+#nonDefaultProd
+
+
+# Copy default assets/configs
+#cp $HOME/CodeArena/Automation/scaffold/defaults/* -r .
+#banner 'Default configs set'
+
+source defaults/netlify_toml
+
+
+# Scripts
+#python $HOME/CodeArena/Automation/scaffold/pkgscript.py
+
+
+# Make project a git repo
+gitInit(){
+  banner 'Git repo'
+  read -p "Make project a git repo(y/n): " resp
+  if [[ -n $resp && ${resp,,} == 'y' ]]; then
+    git init
+    
+    # Add gitignore
+    printf 'node_modules\nbuild' > .gitignore
+    echo '.gitignore file added'
+  fi
+}
+#gitInit
+
+
+# Finished scaffolding
+echo "Scaffolding completed. Happy hacking!"
