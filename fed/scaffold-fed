@@ -116,12 +116,13 @@ nonDefaultProd(){
 #nonDefaultProd
 
 
-# Copy default assets/configs
-#cp $HOME/CodeArena/Automation/scaffold/defaults/* -r .
-#banner 'Default configs set'
-
-source defaults/netlify_toml
-
+# Default assets/configs
+netlify_toml
+public_fed
+src_fed
+webpack_common
+webpack_dev
+webpack_prod
 
 # Scripts
 #python $HOME/CodeArena/Automation/scaffold/pkgscript.py
