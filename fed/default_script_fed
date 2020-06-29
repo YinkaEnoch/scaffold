@@ -1,0 +1,23 @@
+#!/bin/bash
+
+cat package.json | \
+python -c ' 
+import json, sys
+
+jsonObj = json.load(sys.stdin)
+
+# Default Scripts
+scripts = { "test": "jest",
+    "lint": "npx eslint src",
+    "live-server": "npx live-server --port=3000 --open=build/",
+    "serve": "npm run build && npm run live-server",
+    "build": "npx webpack --config=./config/webpack.prod.config.js",
+    "start": "npx webpack-dev-server --config=./config/webpack.dev.config.js",
+    "deploy": "npm run lint && npm run build && netlify deploy --prod"
+}
+
+jsonObj["scripts"] = scripts
+
+with open("package.json", "w") as jsonFile:
+  json.dump(jsonObj, jsonFile, indent = 2)
+'

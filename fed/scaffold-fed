@@ -56,7 +56,7 @@ defaultPackages(){
   # Formatting
   #npm i -D -E -p prettier
 }
-#defaultPackages
+defaultPackages
 
 
 # Non-default packages (dev)
@@ -86,7 +86,7 @@ nonDefaultDev(){
       fi
     done
 }
-#nonDefaultDev
+nonDefaultDev
 
 
 # Non-default packages (prod)
@@ -113,19 +113,17 @@ nonDefaultProd(){
       fi
     done
 }
-#nonDefaultProd
+nonDefaultProd
 
 
 # Default assets/configs
-netlify_toml
+netlify_fed
 public_fed
 src_fed
-webpack_common
-webpack_dev
-webpack_prod
-
-# Scripts
-#python $HOME/CodeArena/Automation/scaffold/pkgscript.py
+webpack_common_fed
+webpack_dev_fed
+webpack_prod_fed
+default_script_fed
 
 
 # Make project a git repo
@@ -140,7 +138,7 @@ gitInit(){
     echo '.gitignore file added'
   fi
 }
-#gitInit
+gitInit
 
 
 # Finished scaffolding
