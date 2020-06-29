@@ -38,6 +38,9 @@ defaultPackages(){
 defaultPackagesDev(){
   packages=(
     'nodemon'
+    'eslint'
+    'eslint-config-prettier'
+    'eslint-plugin-prettier'
   )
 
   banner 'Installing default packages (development)'
@@ -47,6 +50,10 @@ defaultPackagesDev(){
       #npm i -D -p $pkg
       echo $pkg
     done
+
+
+  # Formatting
+  #npm i -D -E -p prettier
 }
 #defaultPackagesDev
 
