@@ -109,7 +109,7 @@ nonDefaultProd(){
         then
           echo $resp
           # Install package
-          # npm i -D -p $pkg
+          # npm i -p $pkg
       fi
     done
 }
