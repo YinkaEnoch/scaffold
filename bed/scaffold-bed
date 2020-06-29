@@ -1,1 +1,134 @@
-echo 'Always winning'
+#!/bin/bash
+
+echo 'Starting scaffold..'
+
+npm init -y
+
+
+# Banner
+banner(){
+  echo '---------------------'
+  echo $1
+  echo '---------------------'
+}
+
+
+# Install default packages
+defaultPackages(){
+  packages=(
+    'express'
+    'body-parser'
+    'cors'
+    'morgan'
+    'cookie-parser'
+  )
+
+  banner 'Installing default packages (development)'
+
+  for pkg in ${packages[@]}
+    do
+      #npm i -p $pkg
+      echo $pkg
+    done
+}
+#defaultPackages
+
+
+# Install default packages (dev)
+defaultPackagesDev(){
+  packages=(
+    'nodemon'
+  )
+
+  banner 'Installing default packages (development)'
+
+  for pkg in ${packages[@]}
+    do
+      #npm i -D -p $pkg
+      echo $pkg
+    done
+}
+#defaultPackagesDev
+
+
+# Non-default packages (dev)
+nonDefaultDev(){
+  packages=(
+  )
+
+  banner 'Non-default packages (development)'
+
+  for pkg in ${packages[@]}
+    do
+      # Read user response
+      read -p "Install ${pkg}(y/n): " resp
+
+      if [[ -n $resp && ${resp,,} == 'y' ]]
+        then
+          echo $resp
+          # Install package
+          # npm i -D -p $pkg
+      fi
+    done
+}
+#nonDefaultDev
+
+
+# Non-default packages (prod)
+nonDefaultProd(){
+  packages=(
+    'mongoose'
+    'csurf'
+    'helmet'
+    'moment'
+    'jsonwebtoken'
+    'uuid'
+    '@hapi/joi'
+    'multer'
+    'bcryptjs'
+    'secure-random'
+    'passport'
+  )
+
+  banner 'Non-default packages (production)'
+
+  for pkg in ${packages[@]}
+    do
+      # Read user response
+      read -p "Install ${pkg}(y/n): " resp
+
+      if [[ -n $resp && ${resp,,} == 'y' ]]
+        then
+          echo $resp
+          # Install package
+          # npm i -p $pkg
+      fi
+    done
+}
+#nonDefaultProd
+
+
+# Default assets/configs
+default_script_bed
+default_index_bed
+nodemon_bed
+
+
+
+# Make project a git repo
+gitInit(){
+  banner 'Git repo'
+  read -p "Make project a git repo(y/n): " resp
+  if [[ -n $resp && ${resp,,} == 'y' ]]; then
+    git init
+    
+    # Add gitignore
+    printf 'node_modules' > .gitignore
+    echo '.gitignore file added'
+  fi
+}
+#gitInit
+
+
+# Finished scaffolding
+echo "Scaffolding completed. Happy hacking!"
