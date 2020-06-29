@@ -1,0 +1,16 @@
+#!/bin/bash
+
+cat package.json | \
+python -c ' 
+import json, sys
+
+jsonObj = json.load(sys.stdin)
+
+# Default Scripts
+scripts = { "start": "nodemon index.js" }
+
+jsonObj["scripts"] = scripts
+
+with open("package.json", "w") as jsonFile:
+  json.dump(jsonObj, jsonFile, indent = 2)
+'
