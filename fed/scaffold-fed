@@ -49,12 +49,11 @@ defaultPackages(){
 
   for pkg in ${packages[@]}
     do
-      #npm i -D -p $pkg
-      echo $pkg
+      npm i -D -p $pkg
     done
 
   # Formatting
-  #npm i -D -E -p prettier
+  npm i -D -E -p prettier
 }
 defaultPackages
 
@@ -80,9 +79,8 @@ nonDefaultDev(){
 
       if [[ -n $resp && ${resp,,} == 'y' ]]
         then
-          echo $resp
           # Install package
-          # npm i -D -p $pkg
+          npm i -D -p $pkg
       fi
     done
 }
@@ -107,9 +105,8 @@ nonDefaultProd(){
 
       if [[ -n $resp && ${resp,,} == 'y' ]]
         then
-          echo $resp
           # Install package
-          # npm i -p $pkg
+          npm i -p $pkg
       fi
     done
 }
