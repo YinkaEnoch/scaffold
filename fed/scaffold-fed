@@ -37,7 +37,8 @@ defaultPackages(){
     'css-loader'
     'file-loader'
     'style-loader'
-    'node-sass sass-loader'
+    'node-sass' 
+    'sass-loader'
 
     # Linting
     'eslint'

@@ -3,7 +3,7 @@ if [ ! -d config ]; then
 fi
 
 echo "
-const merge = require(\"webpack-merge\");
+const { merge } = require(\"webpack-merge\");
 const commonConfig = require(\"./webpack.common\");
 
 // CSSModuleLoader
